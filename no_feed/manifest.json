@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "no feed",
+  "description": "Removes your facebook news feed",
+  "version": "0.1.0",
+  "icons": {
+    "128": "icon_128.png"
+  },
+  "browser_action": {
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": [
+    "tabs"
+  ]
+}
