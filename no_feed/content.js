@@ -40,15 +40,19 @@ function clearFeed() {
   }, 5000);
 }
 
+function removeParams(url) {
+  return url.split(/[?#]/)[0];
+}
+
 const curUrl = window.location.href;
-if (curUrl === 'https://www.facebook.com/') {
+if (removeParams(curUrl) === 'https://www.facebook.com/') {
   clearFeed();
 }
 
 
 chrome.runtime.onMessage.addListener(request => {
   if (request.message === 'no feed please!') {
-    if (request.url === 'https://www.facebook.com/') {
+    if (removeParams(request.url) === 'https://www.facebook.com/') {
       clearFeed();
     }
   }
