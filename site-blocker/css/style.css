@@ -1,0 +1,28 @@
+/* Thanks to Sharon Zheng! https://github.com/skinsshark/site-blocker */
+
+* {
+  box-sizing: border-box;
+  color: #fff;
+  font-family: monospace;
+  font-size: 5vw;
+  font-weight: bold;
+  text-align: center;
+  height: 100vh;
+}
+
+html {
+  background: #FF6961;
+  height: 100vh;
+  padding: 50px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+html::before {
+  content: '!! Get Back To Work !!';
+}
+
+body {
+  display: none !important;
+}
