@@ -1,3 +1,19 @@
+const culpritUrlArray = [
+  'https://www.facebook.com/',
+  'https://web.facebook.com/'
+];
+
+const culpritUrlSet = new Set(culpritUrlArray);
+
+if (isCulpritUrl()) {
+  clearFeed();
+}
+
+function isCulpritUrl() {
+  const curUrl = window.location.href.split(/[?#]/)[0];
+  return culpritUrlSet.has(curUrl);
+}
+
 function clearFeed() {
   const target = [
     {
@@ -14,7 +30,7 @@ function clearFeed() {
       hidden: false
     }
   ]
-  
+
   // document.body.style.visibility = 'hidden';
   const fb = document.body.firstChild;
   fb.style.visibility = 'hidden';
@@ -40,19 +56,9 @@ function clearFeed() {
   }, 5000);
 }
 
-function removeParams(url) {
-  return url.split(/[?#]/)[0];
-}
-
-const curUrl = window.location.href;
-if (removeParams(curUrl) === 'https://www.facebook.com/') {
-  clearFeed();
-}
-
-
 chrome.runtime.onMessage.addListener(request => {
   if (request.message === 'no feed please!') {
-    if (removeParams(request.url) === 'https://www.facebook.com/') {
+    if (isCulpritUrl()) {
       clearFeed();
     }
   }
