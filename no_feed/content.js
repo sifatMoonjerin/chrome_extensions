@@ -26,7 +26,7 @@ function clearFeed() {
       hidden: false
     }, {
       attrType: 'role',
-      attrName: 'feed',
+      attrName: 'main',
       hidden: false
     }
   ]
